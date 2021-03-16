@@ -4,6 +4,9 @@ var express = require("express");
 var apiServer = express();
 
 var port = 3000;
+apiServer.use((req,res,next)=>{
+    res.header('Access-Control-Allow-Origin', '*');
+});
 
 apiServer.listen(port, () => {
     console.log("server running on port ", port);
@@ -15,11 +18,15 @@ apiServer.get("/nome", (req, res) =>{
 if(req.query.a && req.query.b){
     var ris = req.query.a - (-req.query.b);
 console.log("ris = " , ris);
-res.send("{ \"risultato\" : " + ris + "}");
-
+var resObj={risultato:ris}
+res.status(200);
+res.send(resObj);
 }else{
-    res.send("sei in home");
+    req.status(500);
+    res.send("paramentri non corretti");
 }
+
+
 });
 
 
