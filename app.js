@@ -15,23 +15,18 @@ apiServer.listen(port, () => {
 apiServer.get("/nome", (req, res) =>{
     console.log("ho ricevuto una get su nome");
     res.send("ciao, il nome del server è: NODEPOGLIANI");
-if(req.query.a && req.query.b){
-    var ris = req.query.a - (-req.query.b);
-console.log("ris = " , ris);
-var resObj={risultato:ris}
-res.status(200);
-res.send(resObj);
-}else{
-    req.status(500);
-    res.send("paramentri non corretti");
-}
+
 
 
 });
 
 
-apiServer.get("/somma", (req, res) => {
-    console.log("richiesta: " , req.query);
+apiServer.get("/voti", (req, res) => {
+    for(var i=0;i<3;i++){
+        for(var i=0;i<3;i++){
+    console.log("voti " , req.query[i][i]);
+        }
+    }
 });
 
 apiServer.get("/", function(req, res){

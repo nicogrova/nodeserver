@@ -1,0 +1,50 @@
+<html>
+  <body>
+    <div id="div1"></div>
+    <button id="btn_get">registro voti</button>
+
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+        var a={data:"26/03/2020",
+            voto: "8",
+            descrizione: "ottima esposizione, lavorare sulla precisione dei contenuti"};
+        var b={    data:"26/03/2020",
+            voto: "2",
+            descrizione: "ineccepibile cotanta ignoranza in un'unica esposizione"};
+        var c={    data:"26/03/2020",
+            voto: "6",
+            descrizione: "lavorare su contenuto ed esposizione"};
+            var array={a,b,c};
+      $("#btn_get").click( () =>{
+        $.ajax({
+          // url: "",
+          url: "http://127.0.0.1:3000/login",
+          type: "get",
+          crossDomain: true,
+          headers: {
+            accept: "application/json",
+            "Access-Control-Allow-Origin": "*",
+          },
+          data: {
+             voto: array,
+          },
+          success: function (res) {
+            console.log("successo: ", res);
+            stampa(res);
+          },
+          error: function (res) {
+            console.log("errore: ", res);
+          },
+        });
+
+      
+      });
+
+    </script>
+  </body>
+</html>
